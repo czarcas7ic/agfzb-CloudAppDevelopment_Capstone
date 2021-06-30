@@ -10,6 +10,7 @@ from django.utils.timezone import now
 # - Any other fields you would like to include in car make model
 # - __str__ method to print a car make object
 class CarMake(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(null=False, max_length=30, default='')
     description = models.CharField(max_length=1000)
     def __str__(self):
@@ -25,6 +26,7 @@ class CarMake(models.Model):
 # - Any other fields you would like to include in car model
 # - __str__ method to print a car make object
 class CarModel(models.Model):
+    id = models.AutoField(primary_key=True)
     make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     dealer = models.IntegerField()
     name = models.CharField(null=False, max_length=30, default='')

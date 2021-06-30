@@ -74,7 +74,7 @@ def registration_request(request):
 def get_dealerships(request):
     context = {}
     if request.method == "GET":
-        url = "https://5bde1960.us-south.apigw.appdomain.cloud/api/dealership"
+        url = "https://4c16990c.us-south.apigw.appdomain.cloud/api/dealership"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
         # Concat all dealer's short name
@@ -91,7 +91,7 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id):
     context = {}
     if request.method == "GET":
-        url = "https://5bde1960.us-south.apigw.appdomain.cloud/api/review"
+        url = "https://4c16990c.us-south.apigw.appdomain.cloud/api/review"
         reviews = get_dealer_reviews_from_cf(url)
         # Concat all dealer's short name
         # dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
@@ -114,7 +114,7 @@ def add_review(request, dealer_id):
         context['cars'] = CarModel.objects.all()
         return render(request, 'djangoapp/add_review.html', context)
     if request.method == "POST":
-        url = "https://5bde1960.us-south.apigw.appdomain.cloud/api/review-post"
+        url = "https://4c16990c.us-south.apigw.appdomain.cloud/api/review"
         payload = {}
         payload['name'] = request.POST['username']
         payload['dealership'] = dealer_id
@@ -131,6 +131,6 @@ def add_review(request, dealer_id):
 
 
 def get_dealer_detail_infos(dealer_id):
-    url = "https://5bde1960.us-south.apigw.appdomain.cloud/api/dealership"
+    url = "https://4c16990c.us-south.apigw.appdomain.cloud/api/dealership"
     dealerships = get_dealers_from_cf(url)
     return next(filter(lambda x: x.id == dealer_id, dealerships))
